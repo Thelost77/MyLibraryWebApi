@@ -14,6 +14,8 @@ namespace MyLibraryWebApi.Models.Domains
         public int Pages { get; set; }
         public string BookPicture { get; set; }
         public int CategoryId { get; set; }
+        public bool IfOwned { get; set; }
+        public bool IfRead { get; set; }
         public Category Category { get; set; }
         public User User { get; set; }
     }

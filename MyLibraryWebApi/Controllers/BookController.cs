@@ -126,14 +126,14 @@ namespace MyLibraryWebApi.Controllers
             return response;
         }
 
-        [HttpGet("{categoryId}/{Title}")]
-        public DataResponse<IEnumerable<Book>> GetAllBooks(int categoryId = 1, string Title = null)
+        [HttpGet("{categoryId}/{Title}/{ifRead}&&{ifOwned}")]
+        public DataResponse<IEnumerable<Book>> GetAllBooks(int categoryId = 1, string Title = null, bool ifRead = false, bool ifOwned = false)
         {
             var response = new DataResponse<IEnumerable<Book>>();
 
             try
             {
-                response.Data = _unitOfWork.Book.GetAllBooks(categoryId, Title);
+                response.Data = _unitOfWork.Book.GetAllBooks(categoryId, Title, ifRead, ifOwned);
             }
             catch (Exception e)
             {

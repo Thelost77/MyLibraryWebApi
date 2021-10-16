@@ -15,10 +15,16 @@ namespace MyLibraryWebApi.Models.Repository
         {
             _context = context;
         }
-        public IEnumerable<Book> GetAllBooks(int categoryId = 0, string title = null)
+        public IEnumerable<Book> GetAllBooks(int categoryId = 0, string title = null, bool ifRead = false, bool ifOwned = false)
         {
             var books = _context.Books.Include(x => x.Category)
                 .AsQueryable();
+
+            if (ifRead)
+                books = books.Where(x => x.IfRead == ifRead);
+
+            if (ifOwned)
+                books = books.Where(x => x.IfOwned == ifOwned);
 
             if (categoryId != 0)
                 books = books.Where(x => x.CategoryId == categoryId);
